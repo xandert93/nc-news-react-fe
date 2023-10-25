@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
-import { PATHS } from './constants/path-constants'
-import { ArticlesPage } from './pages'
+import { PATHS } from './constants/path-constants.js'
+import { ArticleDetailPage, ArticlesPage } from './pages'
 import { Link } from './components'
 
 const App = () => {
@@ -10,6 +10,7 @@ const App = () => {
       <Routes>
         <Route path={PATHS.HOME} element={<ArticlesPage />} />
         <Route path={PATHS.ARTICLES} element={<ArticlesPage />} />
+        <Route path={PATHS.ARTICLE_DETAIL} element={<ArticleDetailPage />} />
       </Routes>
     </>
   )

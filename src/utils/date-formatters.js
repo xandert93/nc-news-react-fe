@@ -1,7 +1,7 @@
 import { format, formatDistanceToNowStrict } from 'date-fns'
 
-export const genRelativeDateStr = (children) => {
-  const date = new Date(children)
+export const genRelativeDateStr = (dateStr) => {
+  const date = new Date(dateStr)
 
   return formatDistanceToNowStrict(date, { addSuffix: true })
 }
