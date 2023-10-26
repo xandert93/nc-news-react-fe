@@ -1,0 +1,1 @@
+export { useSetDocumentTitle } from './useSetDocumentTitle'
