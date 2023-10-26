@@ -1,18 +1,25 @@
-import { Typography } from '@mui/material'
+import { Grid, Typography } from '@mui/material'
+import { ArticleRating } from './ArticleRating'
 import { TimeAgoTypography } from '../../../components'
-import { splitIntoSentences } from '../../../utils/string-formatters'
+import { getSentences } from '../../../utils/string-formatters'
 
-export const Article = ({
-  id,
-  title,
-  author,
-  topic,
-  body,
-  image_url,
-  vote_count,
-  comment_count,
-  created_at,
-}) => {
+import { useSetDocumentTitle } from '../../../hooks'
+
+export const Article = (article) => {
+  const {
+    id,
+    title,
+    author,
+    topic,
+    body,
+    image_url,
+    vote_count,
+    comment_count,
+    created_at,
+  } = article
+
+  useSetDocumentTitle(article.title)
+
   return (
     <article>
       <Typography variant="h3" component="h1" children={title} />
@@ -21,18 +28,19 @@ export const Article = ({
       <TimeAgoTypography children={created_at} />
       <img src={image_url} width="100%" />
       <ArticleBody body={body} />
+      <ArticleRating id={id} vote_count={vote_count} />
     </article>
   )
 }
 
 const ArticleBody = ({ body }) => {
-  const sentences = splitIntoSentences(body)
+  const sentences = getSentences(body)
 
   return (
-    <div>
+    <Grid container flexDirection="column" rowGap={1.5}>
       {sentences.map((sentence, i) => (
-        <Typography key={i} children={sentence} paragraph />
+        <Typography key={i} children={sentence} />
       ))}
-    </div>
+    </Grid>
   )
 }
