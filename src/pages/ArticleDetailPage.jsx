@@ -3,7 +3,11 @@ import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
 import { articleApi } from '../features/article/api'
 
-import { Article } from '../features/article/components'
+import {
+  Article,
+  ArticleCommentSection,
+  SuggestedArticlesSection,
+} from '../features/article/components'
 
 export const ArticleDetailPage = () => {
   const { id } = useParams()
@@ -18,6 +22,8 @@ export const ArticleDetailPage = () => {
   return (
     <div>
       <Article {...article} />
+      <SuggestedArticlesSection topic={article.topic} />
+      <ArticleCommentSection />
     </div>
   )
 }
