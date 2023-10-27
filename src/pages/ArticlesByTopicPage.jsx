@@ -14,15 +14,23 @@ export const ArticlesByTopicPage = () => {
   const pageTitle = capitaliseFirstLetter(topic_name) + ' Articles'
   useSetDocumentTitle(pageTitle)
 
-  const { data = [] } = useQuery({
+  const {
+    isLoading,
+    data: articles,
+    error,
+  } = useQuery({
     queryKey: ['articles', topic_name],
     queryFn: () => articleApi.getMany({ topic: topic_name }),
   })
 
-  return (
-    <div>
-      <Typography component="h1" variant="h4" children={pageTitle} paragraph />
-      <ArticlePreviewList articles={data} />
-    </div>
-  )
+  if (isLoading) return 'Loading'
+  else if (error) return error.message
+  else if (!articles.length) return "That topic doesn't exist" // JFN
+  else
+    return (
+      <div>
+        <Typography component="h1" variant="h4" children={pageTitle} paragraph />
+        <ArticlePreviewList articles={articles} />
+      </div>
+    )
 }

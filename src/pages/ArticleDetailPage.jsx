@@ -12,18 +12,23 @@ import {
 export const ArticleDetailPage = () => {
   const { id } = useParams()
 
-  const { data: article } = useQuery({
+  const {
+    isLoading,
+    data: article,
+    error,
+  } = useQuery({
     queryKey: ['articles', Number(id)],
     queryFn: () => articleApi.getById(id),
   })
 
-  if (!article) return 'No article...yet'
-
-  return (
-    <div>
-      <Article {...article} />
-      <SuggestedArticlesSection topic={article.topic} />
-      <ArticleCommentSection />
-    </div>
-  )
+  if (isLoading) return 'Loading...'
+  else if (error) return error.message
+  else
+    return (
+      <div>
+        <Article {...article} />
+        <SuggestedArticlesSection topic={article.topic} />
+        <ArticleCommentSection />
+      </div>
+    )
 }
