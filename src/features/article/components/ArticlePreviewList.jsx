@@ -7,7 +7,7 @@ import { Grid } from '@mui/material'
 
 export const ArticlePreviewList = ({ articles }) => {
   return (
-    <Grid container spacing={1}>
+    <Grid container spacing={2} p={2}>
       {articles.map((article) => (
         <Grid item key={article.id} xs={12} sm={6} md={4}>
           <Link variant="body1" to={`${PATHS.ARTICLES}/${article.id}`}>

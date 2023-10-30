@@ -9,3 +9,5 @@ export { Link } from './Links'
 export { TopNavigation } from './TopNavigation'
 
 export { Header } from './Header'
+
+export { Loader } from './Loaders'

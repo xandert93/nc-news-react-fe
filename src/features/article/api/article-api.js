@@ -1,11 +1,16 @@
 import { api } from '../../../api'
 
-export const getMany = async (params) => {
+export const get = async (params) => {
   const { articles } = await api.get('/articles', { params })
   return articles
 }
 
-export const createOne = async (newArticle) => {
+export const getSuggested = async (params) => {
+  const { articles } = await api.get('/articles/suggested', { params })
+  return articles
+}
+
+export const create = async (newArticle) => {
   const { article } = await api.post('/articles', newArticle)
   return article
 }
@@ -15,12 +20,16 @@ export const getById = async (id) => {
   return article
 }
 
-export const updateRatingById = async ({ id, incVal }) => {
+export const updateRating = async ({ id, incVal }) => {
   const { article } = await api.patch(`/articles/${id}/vote_count`, { incVal })
   return article
 }
 
-export const getCommentsByArticleId = async (id) => {
+export const remove = (id) => {
+  return api.delete(`/articles/${id}`)
+}
+
+export const getComments = async (id) => {
   const { comments } = await api.get(`/articles/${id}/comments`)
   return comments
 }

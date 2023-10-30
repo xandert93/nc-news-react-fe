@@ -1,13 +1,13 @@
 import { Route, Routes } from 'react-router-dom'
 import { PATHS } from './constants'
-import {
-  ArticleDetailPage,
-  ArticlesByTopicPage,
-  ArticlesPage,
-  NotFoundPage,
-} from './pages'
+import { NotFoundPage } from './pages'
 
 import { Header, TopNavigation } from './components'
+import {
+  ArticlesPage,
+  ArticleDetailPage,
+  ArticlesByTopicPage,
+} from './features/article/pages'
 
 const App = () => {
   return (

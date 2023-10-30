@@ -13,8 +13,8 @@ export const ArticlePreview = ({
   created_at,
 }) => {
   return (
-    <Card elevation={8}>
-      <CardMedia component="img" height={250} image={image_url} />
+    <Card elevation={1}>
+      <CardMedia component="img" height={240} image={image_url} />
       <CardHeader title={title} />
       <CardContent>
         <TimeAgoTypography children={created_at} />

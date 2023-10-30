@@ -4,17 +4,19 @@ import { capitaliseFirstLetter } from '../../../utils/string-formatters'
 
 import { PATHS } from '../../../constants'
 import { Grid } from '@mui/material'
-import { Link } from '../../../components'
+import { Link, Loader } from '../../../components'
 
 export const ArticleTopicLinks = () => {
-  const { data } = useQuery({
+  const { isLoading, data: topics } = useQuery({
     queryKey: ['topics'],
-    queryFn: articleTopicApi.getMany,
+    queryFn: articleTopicApi.get,
   })
+
+  if (isLoading) return <Loader>Loading Topics...</Loader>
 
   return (
     <Grid container columnGap={2}>
-      {data?.map((topic) => (
+      {topics.map((topic) => (
         <Link
           key={topic.name}
           to={'/articles/topic/' + topic.name}
@@ -22,8 +24,7 @@ export const ArticleTopicLinks = () => {
           children={capitaliseFirstLetter(topic.name)}
         />
       ))}
-
-      {data && <Link to={PATHS.TOPICS} variant="caption" children="More..." />}
+      <Link to={PATHS.TOPICS} variant="caption" children="More..." />
     </Grid>
   )
 }

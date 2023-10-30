@@ -7,7 +7,7 @@ export const ArticleRating = ({ id, vote_count: initialVoteCount }) => {
   const [voteCount, setVoteCount] = useState(initialVoteCount)
 
   const { mutate, error } = useMutation({
-    mutationFn: articleApi.updateRatingById,
+    mutationFn: articleApi.updateRating,
     onMutate: ({ id, incVal }) => {
       setVoteCount((prev) => prev + incVal)
     },
